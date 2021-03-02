@@ -3,8 +3,8 @@ import Reducer from './Reducer'
 
 
 const initialState = {
-    selectedVines: [],
-    searchResults: []
+    selectedVines: [0,4,2,8,7,5],
+    searchResults: [1,2,3,4,5,6,7,8,9]
 };
 
 const Store = ({children}) => {
