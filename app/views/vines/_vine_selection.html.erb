@@ -1,0 +1,28 @@
+<h1>   Selected Vines</h1>
+<% get_selected_vines #stores the selected vines from session variable in @selected_vines %>
+<% if @selected_vines.count > 0 %>
+<table>
+    <%= form_with url: "/vines/selection", method: :get do |form| %>
+        <%= form.submit "Remove ALL" %>
+        <br>
+        <% @selected_vines.each do |v| %>
+        <% @vine = Vine.find(v)%>
+            <tr>
+            <td><%= form.check_box id="#{@vine.id}_check_box" %>
+            <td>
+            <%= form.submit "Move Up" %>
+            <br>
+            <%= form.label "#{@vine.name}" %>
+            <br>
+            <%= form.submit "Move Down" %>
+            </tr>
+        <% end %>
+</table>
+        <%= form.submit "Remove Checked" %>
+        <%= form.submit "Generate Compilation" %>
+        <br>
+        <br>
+        <br>
+        <br>
+    <% end %>
+<% end %>

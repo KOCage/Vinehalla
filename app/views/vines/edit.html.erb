@@ -1,0 +1,10 @@
+<h1>Edit existing Vine<h1>
+<%= form_with model: @currentVine, url: "/vines/update", method: :get do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.label :author %>
+    <%= form.text_field :author %>
+    <br>
+    <%= form.submit "Update" %>
+<% end %>

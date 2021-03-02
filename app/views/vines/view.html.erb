@@ -1,0 +1,18 @@
+<%= form_with url: "/vines/view", method: :get do |form| %>
+    <%= form.label :query, "Search for:" %>
+    <%= form.text_field :query, placeholder: "Search" %>
+    <%= form.submit "Search" %>
+<% end %>
+<h1>Search Results<h1>
+<% if @vines.count > 0 %>
+    <table class = "vine-results">
+        <% @vines.each do |v| %>
+            <% select_vine(v) # adds to the selected vines session variable. Will delete once selecting is implemented %>
+            <tr>
+            <td> <%= react_component("VineNode", {vine: v}, {prerender: true}) %>
+            </tr>
+        <% end %>
+    </table>
+<% else %>
+    <h3> No results found <h3>
+<% end %>

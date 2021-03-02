@@ -1,0 +1,134 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.vinehallaWindow {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.leftFrame {
+    height: 100%;
+    width: 70%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background-color: white;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.topBar {
+    height: 5%;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(30, 146, 30);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    font-size: 30px;
+    border-bottom: 2px solid black;
+}
+
+.searchBar {
+    height: 25%;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-bottom: 2px solid black;
+    padding-top: 5px;
+}
+
+.searchResults {
+    height: 65%;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding-left: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.vineSearchResult {
+    height: 200px;
+    width: 80%;
+    border: 2px solid black;
+    z-index: 1;
+}
+
+.rightFrame {
+    height: 100%;
+    width: 30%;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    position: fixed;
+    background-color: rgb(30, 146, 30);
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-left: 2px solid black;
+    padding-bottom:10px;
+}
+
+.removeAllButton {
+    height: 5%;
+    min-height: 35px;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgb(30, 146, 30);
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+.selectedVineList {
+    height: 90%;
+    width: 100%;
+    z-index: 1;
+    top: 0px;
+    right: 0px;
+    background-color: rgb(30, 146, 30);
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.selectedVine {
+    height: 200px;
+    width: 80%;
+    border: 2px solid black;
+    z-index: 1;
+}
+
+.generateCompilationButton {
+    height: 5%;
+    width: 100%;
+    background-color:rgb(30, 146, 30);
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+}
