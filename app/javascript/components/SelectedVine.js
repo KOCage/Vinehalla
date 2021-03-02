@@ -21,10 +21,13 @@ function SelectedVine (props) {
 
     return (
         <div className = "selectedVine" >
-            <top><center><button onClick={moveUp} >Move Up</button></center></top>
+            <center><button onClick={moveUp} >Move Up</button></center>
+            <br/>
             <button onClick={removeVine}>DELETE</button>
+            <br/>
             <center>Selected Vine { props.vineId }</center>
-            <bottom><center><button onClick={moveDown} >Move Down</button></center></bottom>
+            <br/>
+            <center><button onClick={moveDown} >Move Down</button></center>
         </div>
     )
 }

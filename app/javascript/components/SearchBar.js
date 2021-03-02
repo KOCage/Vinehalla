@@ -62,8 +62,8 @@ function SearchBar () {
                     </tr>
                     <tr>
                     <td><label >Dialogue:</label></td>
-                    <td><input id="searchDialogueInput" placeholder="Dialogue"
-                        onChange = {updateSearchDialogue}></input></td>
+                    <td><textarea id="searchDialogueInput" placeholder="Dialogue"
+                        onChange = {updateSearchDialogue} rows="3" columns="50" className="searchDialogue"></textarea></td>
                     </tr>
                     <tr>
                     <td><button onClick={performSearch} >Submit</button></td>
