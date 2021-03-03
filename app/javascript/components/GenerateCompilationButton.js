@@ -6,7 +6,7 @@ class GenerateCompilationButton extends React.Component {
     {
         return (
             <div className = "generateCompilationButton">
-                <center><top><button>Generate Compilation</button></top></center>
+                <center><button>Generate Compilation</button></center>
             </div>
         )
     }

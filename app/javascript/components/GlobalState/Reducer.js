@@ -63,9 +63,10 @@ const Reducer = (state, action) => {
                 selectedVines: []
              }
 
-        case 'PERFORM_SEARCH':
-            console.log(`Performing search for: ${action.payload.title}, ${action.payload.author}, ${action.payload.tags}, ${action.payload.dialogue}`)
-            return { ...state }
+        case 'UPDATE_SEARCH_RESULTS':
+            console.log("Updating search results")
+            tempResultArray = action.payload
+            return { ...state, searchResults: tempResultArray }
     }
 }
 

@@ -11,7 +11,7 @@ function RemoveAllButton () {
 
     return (
         <div className = "removeAllButton">
-            <top><center><button onClick={handleClick}>Remove All</button></center></top>
+            <center><button onClick={handleClick}>Remove All</button></center>
         </div>
     )
 }

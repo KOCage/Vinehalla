@@ -4,15 +4,20 @@ import VineSearchResult from "./VineSearchResult.js"
 
 function SearchResults() {
     const [state, dispatch] = useContext(Context)
-
-    let searchResults = state.searchResults.map(vineId => <VineSearchResult key={vineId} 
-                                                                        vineId={vineId}/>
-                                                )
+    let searchResults = ""
+    if (state.searchResults) {
+        searchResults = state.searchResults.map(vineId => <VineSearchResult key={vineId} 
+                                                                            vineId={vineId}/>
+                                                    )
+    }  
     
     useEffect(() => {
-        searchResults = state.searchResults.map(vineId => <VineSearchResult key={vineId} 
+        if (state.searchResults)
+            searchResults = state.searchResults.map(vineId => <VineSearchResult key={vineId} 
                                                                         vineId={vineId}/>
-                                                )
+                                                    )
+        else
+            searchResults = "No results found"
     }, [state.searchResults])
 
 

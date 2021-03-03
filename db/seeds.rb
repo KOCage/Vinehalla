@@ -5,7 +5,3 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Vine.create(name: "My Main Goal", author: "Unknown", path: "‪E:\\Vinehalla\\My Main Goal.mp4")
-Vine.create(name: "Im a Grandmother", author: "Unknown", path: "‪E:\\Vinehalla\\Im a Grandmother.mp4")
-Vine.create(name: "Impression of a British Driver", author: "Unknown", path: "‪E:\\Vinehalla\\Impression of a British Driver.mp4")
-Vine.create(name: "Is This Music?", author: "Gabriel Gundacker", path: "‪E:\\Vinehalla\\Is This Music.mp4")

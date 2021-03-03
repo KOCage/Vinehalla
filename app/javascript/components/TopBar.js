@@ -4,7 +4,7 @@ function TopBar () {
 
     return (
         <div className = "topBar">
-            <top>Vinehalla</top>
+            Vinehalla
         </div>
     )
 }

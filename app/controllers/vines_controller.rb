@@ -21,6 +21,15 @@ class VinesController < ApplicationController
   end
 
   def search
+    if (params[:title] ||
+        params[:author] ||
+        params[:tags] ||
+        params[:dialogue]) 
+      @vines = Vine.search(params[:title], params[:author], params[:tags], params[:dialogue])
+      respond_to do |format|
+        format.html { render json: @vines.to_json }
+      end
+    end
   end
 
   def add 
@@ -67,6 +76,6 @@ class VinesController < ApplicationController
   end
   
   def vines_params
-    params.permit(:query, :id, :name, :author, :commit)
+    params.permit(:query, :id, :name, :author, :tags, :dialogue, :commit)
   end
 end
