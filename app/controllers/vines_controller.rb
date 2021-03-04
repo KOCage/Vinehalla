@@ -1,5 +1,4 @@
 class VinesController < ApplicationController
-  @vinePath = "E:\\Vinehalla\\"
 
   def create
   end
@@ -11,13 +10,6 @@ class VinesController < ApplicationController
   end
 
   def update 
-    @currentVine = Vine.find(session[:current_vine])
-    if @currentVine
-      @currentVine.update(name: params["vine"][:name], 
-                         author: params["vine"][:author], 
-                         path: "#{@vinePath}#{params["vine"][:name]}.mp4")
-    end
-    redirect_to "/vines/edit"
   end
 
   def search
@@ -33,15 +25,6 @@ class VinesController < ApplicationController
   end
 
   def add 
-    newVine = Vine.create(name: params[:name], 
-                          author: params[:author], 
-                          path: "#{@vinePath}#{params[:name]}.mp4")
-    if newVine
-      session[:current_vine] = newVine.id
-      redirect_to "/vines/edit"
-    else
-      redirect_to "/vines/create"
-    end 
   end
 
   def view
@@ -76,6 +59,6 @@ class VinesController < ApplicationController
   end
   
   def vines_params
-    params.permit(:query, :id, :name, :author, :tags, :dialogue, :commit)
+    params.permit(:query, :id, :title, :author, :tags, :dialogue, :commit)
   end
 end

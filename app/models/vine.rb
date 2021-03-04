@@ -9,7 +9,7 @@ class Vine < ApplicationRecord
             @query = ""
             @arguments = []
             if (title)
-                @query += "name like ? "
+                @query += "title like ? "
                 @arguments << "%#{title}%"
             end
             if (author)

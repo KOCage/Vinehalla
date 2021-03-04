@@ -96,12 +96,12 @@ module VinesHelper
 
     #ffmpeg -i "path1" -i "path2" -i "path3" -i "pathN" -filter_complex "concat=n=#{COUNT}:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" OUTPUTPATH
     def execute_ffmpeg(pathArray)
-        ffmpegPath = "E:\\Vinehalla\\tools\\ffmpeg.exe"
+        ffmpegPath = VINEHALLA_PATH + "tools\\ffmpeg.exe"
         commandText = ffmpegPath
         optionsText = " -filter_complex \"concat=n=#{pathArray.count}:v=1:a=1 [v] [a]\" -map \"[v]\" -map \"[a]\" "
         dt = Time.now
         dtStamp = dt.strftime("%m-%d-%Y-%k-%M-%S")
-        outputFile = "E:\\Vinehalla\\Output\\VC#{dtStamp}.mp4"
+        outputFile = VINEHALLA_PATH + "Output\\VC#{dtStamp}.mp4"
         if outputFile.include? " "
             outputFile[" "] = ""
         end

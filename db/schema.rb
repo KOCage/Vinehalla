@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_03_125400) do
+ActiveRecord::Schema.define(version: 2021_03_04_134503) do
 
   create_table "vines", force: :cascade do |t|
-    t.string "name"
+    t.string "title"
     t.string "author"
     t.text "path"
     t.datetime "created_at", precision: 6, null: false
