@@ -1,11 +1,13 @@
+import SearchEngine from "./SearchEngine";
+
 const Reducer = (state, action) => {
     let startIndex = 0;
     let tempArray = [...state.selectedVines]
-    let tempResultArray = [...state.searchResults]
     let numSelected = tempArray.length
 
     switch(action.type) {
         case 'MOVE_TARGET_UP':
+            console.log(`Reducer is moving vine ${action.payload} up.`)
             startIndex = state.selectedVines.indexOf(action.payload)
             if (startIndex === 0) {   
                 tempArray.shift()
@@ -22,6 +24,7 @@ const Reducer = (state, action) => {
             }
 
         case 'MOVE_TARGET_DOWN':
+            console.log(`Reducer is moving vine ${action.payload} down.`)
             startIndex = state.selectedVines.indexOf(action.payload)
             if (startIndex === (numSelected - 1)) {  
                 tempArray = tempArray.slice(0, numSelected - 1)
@@ -38,7 +41,7 @@ const Reducer = (state, action) => {
             }
 
         case 'REMOVE_TARGET':
-            console.log(`Removing target: ${ action.payload }`)
+            console.log(`Reducer is removing target: ${ action.payload }`)
             // update the selectedVines array by filtering out the vine with the provided id
             return {
                 ...state, 
@@ -46,7 +49,7 @@ const Reducer = (state, action) => {
             }
 
         case 'ADD_TARGET':
-            console.log(`Adding target: ${ action.payload}`)
+            console.log(`Reducer is adding target: ${ action.payload}`)
             // if the selectedVines already contains this element, then just return the state as is
             if (state.selectedVines.includes(action.payload))
                 return { ...state }
@@ -58,15 +61,19 @@ const Reducer = (state, action) => {
             }
 
         case 'REMOVE_ALL_TARGETS':
+            console.log("Reducer is removing all selected vines")
             return { 
                 ...state,
                 selectedVines: []
              }
 
-        case 'UPDATE_SEARCH_RESULTS':
-            console.log("Updating search results")
-            tempResultArray = action.payload
-            return { ...state, searchResults: tempResultArray }
+        case 'PERFORM_SEARCH':
+            console.log("Reducer is performing a search")
+            state.searchEngine.performSearch(action.payload.title,
+                                       action.payload.author,
+                                       action.payload.tags,
+                                       action.payload.dialogue)
+            return { ...state }
     }
 }
 

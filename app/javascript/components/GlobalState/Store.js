@@ -1,10 +1,10 @@
 import React, {createContext, useReducer} from "react";
 import Reducer from './Reducer'
-
+import SearchEngine from "./SearchEngine"
 
 const initialState = {
     selectedVines: [0,4,2,8,7,5],
-    searchResults: [1,2,3,4,5,6,7,8,9]
+    searchEngine: new SearchEngine()
 };
 
 const Store = ({children}) => {
