@@ -1,5 +1,5 @@
-import React, {setState, useEffect, useContext } from "react"
-import SelectedVine from "./SelectedVine.js"
+import React, { useEffect, useContext } from "react"
+import SelectedVine from "./SelectedVine"
 import { Context } from "./GlobalState/Store"
 
 function SelectedVineList () {

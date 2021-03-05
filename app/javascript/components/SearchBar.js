@@ -1,75 +1,92 @@
-import React, {useState, useContext, useEffect } from "react"
-import { Context } from "./GlobalState/Store"
+import React, {useState} from "react"
+import SearchForm from "./SearchForm"
+import SearchResults from "./SearchResults"
 
 function SearchBar () {
-    const [searchTitle, setSearchTitle ] = useState("")
-    const [searchAuthor, setSearchAuthor ] = useState("")
-    const [searchTags, setSearchTags ] = useState("")
-    const [searchDialogue, setSearchDialogue ] = useState("")
-    const [state, dispatch ] = useContext(Context)
+    const [searchResults, setSearchResults] = useState([])
+    const [performingSearch, setPerformingSearch] = useState(false)
+    const [searchPerformed, setSearchPerformed] = useState(false)
 
-    function performSearch(e)
+    function handleSearch(searchTitle, searchAuthor, searchTags, searchDialogue)
     {
-        e.preventDefault()
-        dispatch({type: "PERFORM_SEARCH", payload: {title: searchTitle,
-                                                    author: searchAuthor,
-                                                    tags: searchTags,
-                                                    dialogue: searchDialogue}})
-    }
-    // Might want to change what type of input each field has, so I'm abstracting the state update
-    function updateSearchTitle(e) {
-        e.preventDefault
-        setSearchTitle(e.target.value)
-    }
-
-    function updateSearchAuthor(e) {
-        e.preventDefault
-        setSearchAuthor(e.target.value)
-    }
-
-    function updateSearchTags(e) {
-        e.preventDefault
-        setSearchTags(e.target.value)
-    }
-
-    function updateSearchDialogue(e) {
-        e.preventDefault
-        setSearchDialogue(e.target.value)
+        performSearch(searchTitle, searchAuthor, searchTags, searchDialogue)
     }
 
     return (
-        <div className = "searchBar">
-            <table>
-                <thead></thead>
-                <tbody>
-                    <tr>
-                    <td><label >Title:</label></td>
-                    <td><input id="searchTitleInput" placeholder="Title"
-                        onChange = {updateSearchTitle}></input></td>
-                    </tr>
-                    <tr>
-                    <td><label >Author:</label></td>
-                    <td><input id="searchAuthorInput" placeholder="Author"
-                        onChange = {updateSearchAuthor}></input></td>
-                    </tr>
-                    <tr>
-                    <td><label >Tags:</label></td>
-                    <td><input id="searchTagsInput" placeholder="Tags"
-                        onChange = {updateSearchTags}></input></td>
-                    </tr>
-                    <tr>
-                    <td><label >Dialogue:</label></td>
-                    <td><textarea id="searchDialogueInput" placeholder="Dialogue"
-                        onChange = {updateSearchDialogue} rows="3" columns="50" className="searchDialogue"></textarea></td>
-                    </tr>
-                    <tr>
-                    <td><button onClick={performSearch} >Submit</button></td>
-                    </tr>
-                </tbody>
-                <tfoot></tfoot>
-            </table>
+        <div>
+            <SearchForm handleSearch={handleSearch} />
+            <SearchResults searchResults={searchResults} performingSearch={performingSearch} searchPerformed={searchPerformed}/>
         </div>
     )
+
+    function performSearch(searchTitle, searchAuthor, searchTags, searchDialogue) {
+
+        let { url, count } = urlBuilder(searchTitle, searchAuthor, searchTags, searchDialogue)
+        if (count === 0)
+            return
+            
+        console.log("URL: ", url)
+        if (!searchPerformed)
+            setSearchPerformed(true)
+        setPerformingSearch(true)
+        fetchResults(url)
+    }
+    
+    function fetchResults(url) {
+        fetch(url)
+        .then((response) => {
+            console.log("Got response")
+            return response.json()
+        })
+        .then((data) => {
+            console.log("Processing response data")
+            console.log(data)
+            console.log("Data length: ", data.length)
+            setSearchResults(data)
+            setPerformingSearch(false)
+        })
+        .catch((err) => {
+            console.log(err)
+            setSearchResults([])
+        })
+    }
+    
+    function urlBuilder(title, author, tags, dialogue) {
+        console.log("Building the URL to search")
+        let url = "./vines/search?"
+        let count = 0
+        if (title != "")
+        {
+            let searchTitle = encodeURIComponent(title)
+            url += "title=" + searchTitle
+            count++
+        }
+        if (author != "")
+        {
+            if (count > 0)
+                url += "&"
+            let searchAuthor = encodeURIComponent(author)
+            url += "author=" + searchAuthor
+            count++
+        }
+        if (tags != "")
+        {
+            if (count > 0)
+                url += "&"
+            let searchTags = encodeURIComponent(tags)
+            url += "tags=" + searchTags
+            count++
+        }
+        if (dialogue != "")
+        {
+            if (count > 0)
+                url += "&"
+            let searchDialogue = encodeURIComponent(dialogue)
+            url += "dialogue=" + searchDialogue
+            count++
+        }
+        return { url: url, count: count }
+    }
 }
 
 export default SearchBar

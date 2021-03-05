@@ -4,7 +4,7 @@ function VineSearchResult (props) {
 
     return (
             <div className = "vineSearchResult">
-                Vine Search Result { props.vineId }
+                { props.vine.title }
             </div>
         )
 }

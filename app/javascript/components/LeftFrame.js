@@ -9,7 +9,6 @@ function LeftFrame() {
         <div className = "leftFrame">
             <TopBar />
             <SearchBar />
-            <SearchResults />
         </div>
     )
 }

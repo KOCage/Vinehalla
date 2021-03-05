@@ -1,5 +1,3 @@
-import SearchEngine from "./SearchEngine";
-
 const Reducer = (state, action) => {
     let startIndex = 0;
     let tempArray = [...state.selectedVines]
@@ -66,14 +64,6 @@ const Reducer = (state, action) => {
                 ...state,
                 selectedVines: []
              }
-
-        case 'PERFORM_SEARCH':
-            console.log("Reducer is performing a search")
-            state.searchEngine.performSearch(action.payload.title,
-                                       action.payload.author,
-                                       action.payload.tags,
-                                       action.payload.dialogue)
-            return { ...state }
     }
 }
 

@@ -1,32 +1,24 @@
-import React, {useContext, useEffect} from "react"
-import { Context } from "./GlobalState/Store"
-import VineSearchResult from "./VineSearchResult.js"
+import React from "react"
+import VineSearchResult from "./VineSearchResult"
 
-function SearchResults() {
-    const [state, dispatch] = useContext(Context)
-    let searchResults = ""
+function SearchResults(props) {
+    let searchResultComponents = ""
 
-    function buildSearchResults(results)
-    {
-        searchResults = results.map(vine => <VineSearchResult key={vine.Id} 
-                                                            vineId={vine.Id}/>)
+    if (!props.searchPerformed) { // If we have never performed a search, maintain a blank search result set  
+        searchResultComponents = ""
+
+    } else if (props.performingSearch) { // if we are in the process of searching, state loading
+        searchResultComponents = "Loading..."
+        
+    } else if (props.searchResults) { // if we are not in the process of searching and we did get results, create them
+        searchResultComponents = props.searchResults.map(vine => <VineSearchResult key={vine.id} vine={vine}/>)
+    } else { // if we got no results back from the completed search, state no results found
+        searchResultComponents = "No results found" 
     }
-
-    if (state.searchEngine.searchResults) { 
-        buildSearchResults(state.searchEngine.searchResults)
-    }  
     
-    useEffect(() => {
-        if (state.searchEngine.searchResults)
-            buildSearchResults(state.searchEngine.searchResults)
-        else
-            searchResults = "No results found"
-    }, [state.searchEngine.searchResults])
-
-
     return (
         <div className = "searchResults">
-            { searchResults }
+            { searchResultComponents }
         </div>
     )
 }
