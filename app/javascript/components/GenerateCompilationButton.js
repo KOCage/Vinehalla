@@ -11,7 +11,9 @@ function GenerateCompilationButton () {
         let url = urlBuilder(state.selectedVines)
         console.log(url)
 
-        fetch(url)
+        // This calls the resulting URL (a call to the ruby code with the desired vine ids) and that leads to the browser download
+        window.location = url
+        
     }
 
     return (
