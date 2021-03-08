@@ -57,8 +57,18 @@ class VinesController < ApplicationController
       redirect_to "/vines/search"
     end
   end
+
+  def requestCompilation
+    puts params[:vineArray]
+    vineIds = params[:vineArray].split(";")
+    outputFile = helpers.generate_requested_compilation(vineIds)
+      if outputFile
+        puts outputFile
+        send_file outputFile
+      end
+  end
   
   def vines_params
-    params.permit(:query, :id, :title, :author, :tags, :dialogue, :commit)
+    params.permit(:query, :id, :title, :author, :tags, :dialogue, :commit, :vineArray)
   end
 end

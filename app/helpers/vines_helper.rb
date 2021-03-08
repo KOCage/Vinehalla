@@ -94,6 +94,18 @@ module VinesHelper
         end
     end
 
+    def generate_requested_compilation(vineIds)
+        puts "Generating requested compilation"
+        pathArray = [];
+        vineIds.each do |vId|
+            vine = Vine.find(vId)
+            pathArray.push vine.path
+        end
+        if pathArray.count > 0
+            return outputFile = execute_ffmpeg(pathArray)
+        end
+    end
+
     #ffmpeg -i "path1" -i "path2" -i "path3" -i "pathN" -filter_complex "concat=n=#{COUNT}:v=1:a=1 [v] [a]" -map "[v]" -map "[a]" OUTPUTPATH
     def execute_ffmpeg(pathArray)
         ffmpegPath = VINEHALLA_PATH + "tools\\ffmpeg.exe"

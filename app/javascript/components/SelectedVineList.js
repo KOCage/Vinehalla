@@ -5,13 +5,13 @@ import { Context } from "./GlobalState/Store"
 function SelectedVineList () {
     const [state, dispatch] = useContext(Context)
 
-    let selectedVines = state.selectedVines.map(vineId => <SelectedVine key={vineId} 
-                                                                        vineId={vineId}/>
+    let selectedVines = state.selectedVines.map(vine => <SelectedVine key={vine.id} 
+                                                                        vine={vine}/>
                                                 )
     
     useEffect(() => {
-        selectedVines = state.selectedVines.map(vineId => <SelectedVine key={vineId} 
-                                                                        vineId={vineId}/>
+        selectedVines = state.selectedVines.map(vine => <SelectedVine key={vine.id} 
+                                                                        vineId={vine}/>
                                                 )
     }, [state.selectedVines])
 

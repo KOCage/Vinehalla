@@ -1,14 +1,13 @@
 import React from "react"
 import TopBar from "./TopBar"
-import SearchBar from "./SearchBar"
-import SearchResults from "./SearchResults"
+import SearchArea from "./SearchArea"
 
 function LeftFrame() {
 
     return (
         <div className = "leftFrame">
             <TopBar />
-            <SearchBar />
+            <SearchArea />
         </div>
     )
 }

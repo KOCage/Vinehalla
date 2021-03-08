@@ -12,6 +12,30 @@
  *
  *= require_tree .
  *= require_self
+
+
+
+
+    cascade: identical selectors will overwrite the ones above them. Lowest code wins
+    The most specific selector that applies will be used. So if we have "p .class" and below 
+        that ".class". Something of class "class" that is a child of a paragraph would get the 
+        first declaration because it is more specific. IDS ARE THE MOST SPECIFIC OF ALL, but they will be overridden by inline styles
+    
+        . means this is a class
+    # means this is an id
+    , seperate two selectors with a single declaration
+    SEL1 > SEL2 only applies to SEL2 that are children of SEL1. Won't apply to the children of SEL2!
+
+    Pseudo class 
+        ul li:nth-child(int) - This selector applies to the nth li of a ul
+        a:hover - applies to a link when you hover over it
+
+    Pseudo element
+        ::before 
+
+    can mix pseudo class and element!
+    ul a:hover::before - applies to a link in an unstrictured list, when we hover over it, and it adds whatever we put
+
  */
 
 .vinehallaWindow {
@@ -49,9 +73,14 @@
     border-bottom: 2px solid black;
 }
 
-.searchBar {
+.searchArea {
+    height: 100%;
+    width: 100%;
+}
+
+.searchForm {
     height: 25%;
-    max-height: 200px;
+    min-height: 180px;
     width: 100%;
     z-index: 1;
     top: 0;
@@ -62,26 +91,83 @@
     padding-top: 5px;
 }
 
+.searchForm .searchDialogue {
+    resize: none;
+}
+
 .searchResults {
     height: 65%;
-    width: 100%;
+    width: 99%;
     padding-left: 10px;
     overflow-x: hidden;
     overflow-y: auto;
 }
 
-.searchDialogue {
-    resize: none;
-}
-
 .vineSearchResult {
     height: 200px;
-    width: 80%;
+    width: 95%;
     border: 2px solid black;
-    z-index: 1;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 350px auto 350px;
+    grid-template-areas: "t d i"
+}
+
+.vineSearchResult:hover {
+    height: 200px;
+    width: 95%;
+    border: 2px solid black;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 5px;
+    display: grid;
+    grid-template-columns: 350px auto 350px 50px;
+    grid-template-areas: "t d i b"
+}
+
+.searchResultImage {
+    height: 100%;
+    width: auto;
+    border: 1px solid black;
+    grid-area: i;
+}
+
+.searchResultDetails {
+    height: 100%;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid black;
+    grid-area: t;
+}
+
+.searchResultDialogue {
+    height: 100%;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid black;
+    grid-area: d;
+}
+
+.selectSearchResult {    
+    display: none;
+}
+
+.vineSearchResult:hover > .selectSearchResult {
+    height: 100%;
+    width: 100%;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    grid-area: b;
 }
 
 .rightFrame {

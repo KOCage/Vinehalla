@@ -34,7 +34,7 @@ function SearchForm(props) {
     }
 
     return (
-        <div className = "searchBar">
+        <div className = "searchForm">
             <table>
                 <thead></thead>
                 <tbody>

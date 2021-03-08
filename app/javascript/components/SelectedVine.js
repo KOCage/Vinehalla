@@ -6,17 +6,17 @@ function SelectedVine (props) {
 
     function moveUp(e) {
         e.preventDefault()
-        dispatch({type: "MOVE_TARGET_UP", payload: props.vineId})
+        dispatch({type: "MOVE_TARGET_UP", payload: props.vine})
     }
 
     function moveDown(e) {
         e.preventDefault()
-        dispatch({type: "MOVE_TARGET_DOWN", payload: props.vineId})
+        dispatch({type: "MOVE_TARGET_DOWN", payload: props.vine})
     }
 
     function removeVine(e) {
         e.preventDefault()
-        dispatch({type: "REMOVE_TARGET", payload: props.vineId})
+        dispatch({type: "REMOVE_TARGET", payload: props.vine})
     }
 
     return (
@@ -25,7 +25,9 @@ function SelectedVine (props) {
             <br/>
             <button onClick={removeVine}>DELETE</button>
             <br/>
-            <center>Selected Vine { props.vineId }</center>
+            <center>Selected Vine { props.vine.id }</center>
+            <br/>
+            <center>Title: { props.vine.title }</center>
             <br/>
             <center><button onClick={moveDown} >Move Down</button></center>
         </div>

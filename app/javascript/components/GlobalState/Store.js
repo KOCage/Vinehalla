@@ -2,7 +2,7 @@ import React, {createContext, useReducer} from "react";
 import Reducer from './Reducer'
 
 const initialState = {
-    selectedVines: [5,8,12,15]
+    selectedVines: []
 }
 
 const Store = ({children}) => {

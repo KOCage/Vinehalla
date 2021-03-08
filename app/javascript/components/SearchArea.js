@@ -2,7 +2,7 @@ import React, {useState} from "react"
 import SearchForm from "./SearchForm"
 import SearchResults from "./SearchResults"
 
-function SearchBar () {
+function SearchArea () {
     const [searchResults, setSearchResults] = useState([])
     const [performingSearch, setPerformingSearch] = useState(false)
     const [searchPerformed, setSearchPerformed] = useState(false)
@@ -13,7 +13,7 @@ function SearchBar () {
     }
 
     return (
-        <div>
+        <div className = "searchArea">
             <SearchForm handleSearch={handleSearch} />
             <SearchResults searchResults={searchResults} performingSearch={performingSearch} searchPerformed={searchPerformed}/>
         </div>
@@ -89,4 +89,4 @@ function SearchBar () {
     }
 }
 
-export default SearchBar
+export default SearchArea
