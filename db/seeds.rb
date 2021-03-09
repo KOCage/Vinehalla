@@ -22,6 +22,7 @@
 #                                                         path: the path to the video file
 #                                                         image_path: the path of the image file, if it was found
 require 'csv'
+require "base64"
 
 vinesPath = VINEHALLA_PATH + "Vines\\"
 
@@ -74,7 +75,6 @@ vinesChildren.each do |authorFolder|
 #           if the returned row exists, update the title, tags, and dialogue variables 
 #           If the value in the row is not nil, update the variables. 
             if (!vineDetailsRow.nil?)
-                puts vineDetailsRow
                 if (!vineDetailsRow["Title"].nil?)
                     title = vineDetailsRow["Title"]
                 end
@@ -98,13 +98,26 @@ vinesChildren.each do |authorFolder|
             ffmpegCommand["[OUTPUTFILE]"] = image_path
             result = %x{#{ffmpegCommand}}
         end
+
+#       Read in the image screenshot and create a base64 encoded string of it. Store that in image_source to be put in the database. 
+        image_source = File.open(image_path, "rb") do |file|
+            Base64.strict_encode64(file.read)
+        end
+
 #       create a vine entry in the database with title: (filename - extension)
 #                                                author: the author set by the folder name     
 #                                                path: the path to the video file
 #                                                image_path: the path of the image file
 #                                                tags: found in the vineDetails csv file, or is empty string
-#                                                Dialogue: found in the vineDetails csv file, or is empty string
-        puts "title: #{title}, author: #{author}, path: #{file_path}, image_path: #{image_path}, tags: #{tags}, dialogue: #{dialogue}"
-        Vine.create(title: title, author: author, path: file_path, image_path: image_path, tags: tags, dialogue: dialogue)
+#                                                dialogue: found in the vineDetails csv file, or is empty string
+#                                                image_source: base64 encoded string of the screenshot 
+#       puts "title: #{title}, author: #{author}, path: #{file_path}, image_path: #{image_path}, tags: #{tags}, dialogue: #{dialogue}, image_source: #{image_source}"
+        Vine.create(title: title, 
+                    author: author, 
+                    path: file_path, 
+                    image_path: image_path, 
+                    tags: tags, 
+                    dialogue: dialogue, 
+                    image_source: image_source)
     end
 end

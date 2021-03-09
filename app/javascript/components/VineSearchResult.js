@@ -3,14 +3,14 @@ import { Context } from "./GlobalState/Store"
 
 function VineSearchResult (props) {
     const [state, dispatch] = useContext(Context)
-    const {image_path, title, author, tags, dialogue} = props.vine
+    const {title, author, tags, dialogue, image_source} = props.vine
 
-    let image = null
-    if (image_path &&
-        image_path !== "") {
-            console.log(`Generating image for search result ${image_path}`)
-            image = <img className="searchResultImage" src={`file://${image_path}`}/>
-        }
+    const vine_image = new Image()
+    vine_image.src = 'data:image/jpg;base64,' + image_source
+    const searchResultImage = React.createElement("img", {
+        src: vine_image.src,
+        width: "100%"
+    }, null)
 
     function selectVine(e)
     {
@@ -20,7 +20,6 @@ function VineSearchResult (props) {
 
     return (
             <div className = "vineSearchResult">
-                {image}
                 <div className="searchResultDetails">
                     Title: { title } <br/>
                     Author: { author } <br/>
@@ -28,6 +27,9 @@ function VineSearchResult (props) {
                 </div>
                 <div className="searchResultDialogue">
                     { dialogue}
+                </div>
+                <div className="searchResultImage">
+                    { searchResultImage }
                 </div>
                 <button className="selectSearchResult" onClick={selectVine}>{">>"}</button>
 

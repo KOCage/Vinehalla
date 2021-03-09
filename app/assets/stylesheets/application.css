@@ -132,9 +132,9 @@
 .searchResultImage {
     height: 100%;
     width: auto;
-    border: 1px solid black;
     grid-area: i;
     margin-left: 2px;
+    padding-top: 3px;
 }
 
 .searchResultDetails {
