@@ -3,11 +3,13 @@ import { Context } from "./GlobalState/Store"
 
 function VineSearchResult (props) {
     const [state, dispatch] = useContext(Context)
+    const {image_path, title, author, tags, dialogue} = props.vine
+
     let image = null
-    if (props.vine.image_path &&
-        props.vine.image_path !== "") {
-            console.log(`Generating image for search result ${props.vine.image_path}`)
-            image = <img className="searchResultImage" src={`file://${props.vine.image_path}`}/>
+    if (image_path &&
+        image_path !== "") {
+            console.log(`Generating image for search result ${image_path}`)
+            image = <img className="searchResultImage" src={`file://${image_path}`}/>
         }
 
     function selectVine(e)
@@ -20,12 +22,12 @@ function VineSearchResult (props) {
             <div className = "vineSearchResult">
                 {image}
                 <div className="searchResultDetails">
-                    Title: { props.vine.title } <br/>
-                    Author: { props.vine.author } <br/>
-                    Tags: {props.vine.tags } <br/>
+                    Title: { title } <br/>
+                    Author: { author } <br/>
+                    Tags: { tags } <br/>
                 </div>
                 <div className="searchResultDialogue">
-                    { props.vine.dialogue}
+                    { dialogue}
                 </div>
                 <button className="selectSearchResult" onClick={selectVine}>{">>"}</button>
 

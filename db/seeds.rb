@@ -38,12 +38,12 @@ vinesChildren.each do |authorFolder|
 
     vineDetails_path = author_path + "vineDetails.csv"
 
-#   read in the vineDetails csv as a CSV Table
+#   read in the vineDetails csv as a CSV Table. 
     vineDetails = nil
     if (File.exist?(vineDetails_path))
         vineDetails = CSV.parse(File.read(vineDetails_path), headers: true)
     end
-    
+
 #   Get all children of that folder
     authorChildren = Dir.children(author_path)
 
@@ -54,9 +54,11 @@ vinesChildren.each do |authorFolder|
             next
         end
 
-#       store the path of the file and pull put the title out
+#       store the path of the file and pull the title out
         file_path = author_path + file
-        title = file
+        title = file.clone
+
+#       Default the title to be the file name excluding extension
         title[".mp4"] = ""
 
 #       Default tags and dialogue to empty strings
@@ -66,16 +68,24 @@ vinesChildren.each do |authorFolder|
 #       If the vineDetails file was found, search the vineDetails CSV Table for a row with the same title
         if (!vineDetails.nil?)
             vineDetailsRow = vineDetails.find { |r|
-                r["Title"] == title
+                r["File"] == file
             }
 
-#           if the returned row exists, update the tags and dialogue variables 
+#           if the returned row exists, update the title, tags, and dialogue variables 
+#           If the value in the row is not nil, update the variables. 
             if (!vineDetailsRow.nil?)
-                tags = vineDetailsRow["Tags"]
-                dialogue = vineDetailsRow["Dialogue"]
+                puts vineDetailsRow
+                if (!vineDetailsRow["Title"].nil?)
+                    title = vineDetailsRow["Title"]
+                end
+                if (!vineDetailsRow["Tags"].nil?)
+                    tags = vineDetailsRow["Tags"]
+                end
+                if (!vineDetailsRow["Dialogue"].nil?)
+                    dialogue = vineDetailsRow["Dialogue"]
+                end
             end
         end
-        
 
 #       There should be a screenshot with the same filename but as a jpg. 
         image_file = (title + ".jpg")

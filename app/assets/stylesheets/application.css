@@ -134,22 +134,25 @@
     width: auto;
     border: 1px solid black;
     grid-area: i;
+    margin-left: 2px;
 }
 
 .searchResultDetails {
-    height: 100%;
-    width: 100%;
+    height: 95%;
+    width: 95%;
     min-width: 200px;
     border: 1px solid black;
     grid-area: t;
+    padding: 4px;
 }
 
 .searchResultDialogue {
-    height: 100%;
-    width: 100%;
+    height: 95%;
+    width: 95%;
     min-width: 200px;
     border: 1px solid black;
     grid-area: d;
+    padding: 4px;
 }
 
 .selectSearchResult {    
