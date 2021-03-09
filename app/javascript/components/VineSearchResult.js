@@ -5,12 +5,7 @@ function VineSearchResult (props) {
     const [state, dispatch] = useContext(Context)
     const {title, author, tags, dialogue, image_source} = props.vine
 
-    const vine_image = new Image()
-    vine_image.src = 'data:image/jpg;base64,' + image_source
-    const searchResultImage = React.createElement("img", {
-        src: vine_image.src,
-        width: "100%"
-    }, null)
+    const vine_image = <img className="searchResultImage" src={'data:image/jpg;base64,' + image_source} width="100%" />
 
     function selectVine(e)
     {
@@ -26,12 +21,10 @@ function VineSearchResult (props) {
                     Tags: { tags } <br/>
                 </div>
                 <div className="searchResultDialogue">
-                    { dialogue}
+                    { dialogue }
                 </div>
-                <div className="searchResultImage">
-                    { searchResultImage }
-                </div>
-                <button className="selectSearchResult" onClick={selectVine}>{">>"}</button>
+                    { vine_image }
+                <button className="selectSearchResult" onClick={selectVine}>{">>  "}</button>
 
             </div>
         )

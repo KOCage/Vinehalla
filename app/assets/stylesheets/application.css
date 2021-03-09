@@ -130,11 +130,10 @@
 }
 
 .searchResultImage {
-    height: 100%;
-    width: auto;
+    height: auto;
+    width: 100%;
     grid-area: i;
-    margin-left: 2px;
-    padding-top: 3px;
+    padding-top: 2px;
 }
 
 .searchResultDetails {
@@ -202,7 +201,6 @@
 .selectedVineList {
     height: 90%;
     width: 100%;
-    z-index: 1;
     top: 0px;
     right: 0px;
     background-color: rgb(30, 146, 30);
@@ -211,10 +209,90 @@
 }
 
 .selectedVine {
-    height: 200px;
+    height: 300px;
     width: 80%;
     border: 2px solid black;
-    z-index: 1;
+    display: grid;
+    grid-template-rows: 250px auto;
+    grid-template-areas: "i"
+                         "t"
+}
+
+.selectedVine:hover {
+    height: 300px;
+    width: 80%;
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 0px auto;
+    grid-template-rows: 15px 250px auto 15px;
+    grid-template-areas: "u u"
+                         "x i"
+                         "x t"
+                         "d d"
+}
+
+.selectedVineTitle{
+    height: 100%;
+    width: 100%;
+    grid-area: t
+}
+
+.selectedVineImage {
+    height: auto;
+    width: 100%;
+    grid-area: i
+}
+
+
+.moveVineUpButton {    
+    display: none;
+}
+
+.selectedVine:hover > .moveVineUpButton {
+    height: 15px;
+    width: 100%;
+    background-color: white; 
+    border: none;
+    color: Green;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    grid-area: u
+}
+
+.moveVineDownButton {    
+    display: none;
+}
+
+.selectedVine:hover > .moveVineDownButton {
+    height: 15px;
+    width: 100%;
+    background-color: white; 
+    border: none;
+    color: Green;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    grid-area: d
+}
+
+.deleteVineButton {    
+    display: none;
+}
+
+.selectedVine:hover > .deleteVineButton {
+    height: 100%;
+    width: 20px;
+    background-color: red; 
+    border: none;
+    color: Black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    grid-area: x
 }
 
 .generateCompilationButton {
@@ -223,5 +301,4 @@
     background-color:rgb(30, 146, 30);
     bottom: 0;
     right: 0;
-    z-index: 1;
 }

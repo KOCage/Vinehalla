@@ -3,6 +3,9 @@ import { Context } from "./GlobalState/Store"
 
 function SelectedVine (props) {
     const [ state, dispatch ] = useContext(Context)
+    const {image_source, title } = props.vine
+
+    const vine_image = <img className = "selectedVineImage" src={'data:image/jpg;base64,' + image_source} width="100%"/>
 
     function moveUp(e) {
         e.preventDefault()
@@ -21,15 +24,13 @@ function SelectedVine (props) {
 
     return (
         <div className = "selectedVine" >
-            <center><button onClick={moveUp} >Move Up</button></center>
-            <br/>
-            <button onClick={removeVine}>DELETE</button>
-            <br/>
-            <center>Selected Vine { props.vine.id }</center>
-            <br/>
-            <center>Title: { props.vine.title }</center>
-            <br/>
-            <center><button onClick={moveDown} >Move Down</button></center>
+            { vine_image }
+            <div className = "selectedVineTitle"> 
+                { title }
+            </div>
+            <button className = "moveVineUpButton" onClick={moveUp} >Move Up</button>
+            <button className = "deleteVineButton" onClick={removeVine}>X</button>
+            <button className = "moveVineDownButton" onClick={moveDown} >Move Down</button>
         </div>
     )
 }
