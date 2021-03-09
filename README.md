@@ -25,6 +25,10 @@ The app expects a local file system in the form of
 - root/Vines = parent folder for vine videos
 - root/Vines/Unknown = folder for vines where author is unknown
 - root/Vines/.... = vines with known authors should be stored in folders named after the author. The seed.rb file will use the folder names to set the author field in the database entries
+- IMPORTANT: Each author folder, including the "Unknown" folder (if it exists), needs a vineDetails.csv file. 
+
+# vineDetails.csv:
+Each author folder needs a vineDetails.csv file. This file contains three columns: Title, Tags, and Dialogue. The seeds file will use these csv files to add tag and dialogue data to each vine found in that author's folder. 
 
 # Database updating: 
 Currently the app doesn't offer a way to edit the vine database. To add tags/dialogue to the database, you will need to modify the entries manually. I recommend the SQLite DB Browser. https://sqlitebrowser.org/
