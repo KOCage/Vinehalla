@@ -105,7 +105,7 @@
 
 .vineSearchResult {
     height: 200px;
-    width: 95%;
+    width: 90%;
     border: 2px solid black;
     padding-left: 5px;
     padding-top: 5px;
@@ -118,14 +118,14 @@
 
 .vineSearchResult:hover {
     height: 200px;
-    width: 95%;
+    width: 90%;
     border: 2px solid black;
     padding-left: 5px;
     padding-top: 5px;
     padding-bottom: 5px;
     margin: 5px;
     display: grid;
-    grid-template-columns: 350px auto 350px 50px;
+    grid-template-columns: 350px auto 350px 0px;
     grid-template-areas: "t d i b"
 }
 
@@ -158,7 +158,7 @@
 
 .vineSearchResult:hover > .selectSearchResult {
     height: 100%;
-    width: 100%;
+    width: 50px;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
