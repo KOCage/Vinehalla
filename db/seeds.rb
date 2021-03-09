@@ -16,6 +16,7 @@
 #    Get all children of that folder
 #        for each video file (currently expecting mp4, though may expand this in the future)
 #            see if there is a matching jpg screenshot file (will be the same name but jpg instead of mp4)
+#                IF THERE IS NOT: use ffmpeg to create a screenshot from 3 seconds in to the video
 #                create a vine entry in the database with title: (filename - extension)
 #                                                         author: the author set by the folder name     
 #                                                         path: the path to the video file
@@ -39,15 +40,22 @@ vinesChildren.each do |authorFolder|
             # don't work any non video file
             next
         end
+
+        # store the path of the file and pull put the title out
         file_path = author_path + file
         title = file
         title[".mp4"] = ""
-#       see if there is a matching jpg screenshot file (will be the same name but jpg instead of mp4)
+
+#       There should be a screenshot with the same filename but as a jpg. 
         image_file = (title + ".jpg")
-        if authorChildren.include? image_file
-            image_path = author_path + image_file
-        else
-            image_path = ""
+        image_path = author_path + image_file
+#       If there isn't a screenshot, create one using ffmpeg. If that fails, just store an empty string as the image path and output a warning. 
+#       ffmpeg -ss 00:00:03 -i "INPUTPATH" -vframes 1 -q:v 2 "OUTPUTPATH"
+        if !authorChildren.include? image_file
+            ffmpegCommand = VINEHALLA_PATH + "Tools\\ffmpeg.exe -ss 00:00:03 -i \"[INPUTFILE]\" -vframes 1 -q:v 2 \"[OUTPUTFILE]\""
+            ffmpegCommand["[INPUTFILE]"] = file_path
+            ffmpegCommand["[OUTPUTFILE]"] = image_path
+            result = %x{#{ffmpegCommand}}
         end
 #                create a vine entry in the database with title: (filename - extension)
 #                                                         author: the author set by the folder name     
